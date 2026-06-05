@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frateli Night Club — Bajina Bašta</title>
+  <meta name="description" content="Frateli Night Club Bajina Bašta — rezervacije stolova, VIP, petak i subota 22h–03h." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #080510;
+      --bg2: #0f0a1a;
+      --bg3: #160f25;
+      --gold: #c9a84c;
+      --gold2: #e8c96a;
+      --purple: #9333ea;
+      --purple2: #a855f7;
+      --text: #f0ecf8;
+      --text2: rgba(240,236,248,0.55);
+      --text3: rgba(240,236,248,0.3);
+      --border: rgba(201,168,76,0.15);
+      --border2: rgba(201,168,76,0.3);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(147,51,234,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-city {
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 8px;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 14vw, 140px);
+      font-weight: 300;
+      letter-spacing: 16px;
+      color: var(--text);
+      line-height: 1;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+
+    .hero-subtitle {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 10px;
+      color: var(--text3);
+      margin-top: 10px;
+      animation: fadeUp 1s 0.25s ease both;
+    }
+
+    .hero-divider {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+
+    .hero-pills {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 1s 0.45s ease both;
+    }
+
+    .pill {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text2);
+      border: 0.5px solid var(--border2);
+      border-radius: 30px;
+      padding: 6px 18px;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      animation: fadeUp 1s 0.55s ease both;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      text-decoration: none;
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-gold:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeUp 1s 0.8s ease both;
+    }
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: var(--text3);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 6px;
+      color: var(--gold);
+      opacity: 0.8;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 300;
+      letter-spacing: 4px;
+      color: var(--text);
+      margin-bottom: 3rem;
+    }
+
+    .section-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.5;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── RESERVATION FORM ── */
+    #rezervacija {
+      background: var(--bg2);
+      max-width: 100%;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    #rezervacija .inner {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .age-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201,168,76,0.06);
+      border: 0.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 13px;
+      color: var(--text2);
+      margin-bottom: 2rem;
+    }
+    .age-banner svg { flex-shrink: 0; color: var(--gold); }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+
+    .form-group label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--text3);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 0.5px solid rgba(201,168,76,0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: #160f25; color: var(--text); }
+
+    .table-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--text3);
+      margin-bottom: 10px;
+    }
+
+    .table-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 480px) {
+      .table-cards { grid-template-columns: 1fr; }
+    }
+
+    .table-card {
+      border: 0.5px solid rgba(201,168,76,0.15);
+      border-radius: var(--radius);
+      padding: 18px 14px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: rgba(255,255,255,0.02);
+    }
+    .table-card:hover { border-color: rgba(201,168,76,0.4); }
+    .table-card.selected {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.06);
+    }
+    .tc-icon { font-size: 24px; margin-bottom: 8px; }
+    .tc-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 1px;
+    }
+    .tc-min { font-size: 11px; color: var(--text3); margin-top: 4px; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      border-radius: 2px;
+      color: var(--gold);
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--gold); color: var(--bg); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* ── CONFIRM ── */
+    .confirm-wrap {
+      display: none;
+      text-align: center;
+      padding: 3rem 1rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .confirm-check {
+      width: 64px; height: 64px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 26px;
+    }
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px; font-weight: 300; letter-spacing: 3px;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .confirm-ref { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 2rem; }
+    .confirm-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      border-top: 0.5px solid var(--border); padding-top: 1.5rem;
+      max-width: 400px; margin: 0 auto 1.5rem; text-align: left;
+    }
+    .confirm-item label { font-size: 10px; letter-spacing: 2px; color: var(--text3); display: block; margin-bottom: 4px; }
+    .confirm-item span { font-size: 14px; font-weight: 400; color: var(--text); }
+    .confirm-note { font-size: 13px; color: var(--text2); line-height: 1.7; }
+
+    /* ── EVENTS ── */
+    .events-grid { display: flex; flex-direction: column; gap: 1px; }
+    .event-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 0.5px solid var(--border);
+      transition: background 0.15s;
+    }
+    .event-row:first-child { border-top: 0.5px solid var(--border); }
+    .event-date-box {
+      min-width: 52px; text-align: center;
+    }
+    .edm { font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--gold); }
+    .edd { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--text); line-height: 1; }
+    .event-info { flex: 1; }
+    .event-name { font-size: 15px; font-weight: 400; color: var(--text); }
+    .event-meta { font-size: 12px; color: var(--text3); margin-top: 4px; letter-spacing: 0.5px; }
+    .event-badge {
+      font-size: 10px; letter-spacing: 2px;
+      padding: 4px 12px; border-radius: 30px;
+      border: 0.5px solid;
+    }
+    .badge-open { border-color: rgba(147,51,234,0.4); color: var(--purple2); }
+    .badge-vip { border-color: var(--border2); color: var(--gold); }
+    .event-btn {
+      font-size: 11px; letter-spacing: 2px;
+      padding: 8px 16px;
+      border: 0.5px solid var(--border2);
+      border-radius: 2px;
+      background: none; color: var(--gold); cursor: pointer;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+    }
+    .event-btn:hover { background: var(--gold); color: var(--bg); }
+
+    /* ── CONTACT ── */
+    #kontakt { border-top: 1px solid var(--border); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      border: 0.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 2rem;
+    }
+    @media (max-width: 560px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    .contact-cell {
+      padding: 1.5rem;
+      background: var(--bg2);
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .cc-icon { font-size: 22px; color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 2px; }
+    .cc-label { font-size: 10px; letter-spacing: 2px; color: var(--text3); margin-bottom: 5px; }
+    .cc-val { font-size: 15px; font-weight: 400; color: var(--text); }
+    .cc-val2 { font-size: 12px; color: var(--text2); margin-top: 3px; }
+
+    .map-frame {
+      width: 100%;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 0.5px solid var(--border);
+    }
+    .map-frame iframe {
+      width: 100%; height: 260px; display: block; border: none;
+      filter: grayscale(0.3) brightness(0.85);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 12px;
+      color: var(--text3);
+      letter-spacing: 1px;
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--gold); opacity: 0.6; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(8,5,16,0.7);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--text2);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+    }
+
+    /* ── LOADING OVERLAY ── */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 999;
+      transition: opacity 0.6s ease;
+    }
+    .loader-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 300;
+      letter-spacing: 12px;
+      color: var(--text);
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.1); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; }
+      50%       { opacity: 1; }
+    }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--bg3);
+      border: 0.5px solid var(--gold);
+      border-radius: var(--radius-sm);
+      padding: 12px 24px;
+      font-size: 13px;
+      color: var(--text);
+      z-index: 200;
+      transition: transform 0.4s ease;
+      white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">FRATELI</div>
+</div>
+
+<!-- TOAST -->
+<div id="toast">✓ Rezervacija je poslata!</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">FRATELI</div>
+  <ul class="nav-links">
+    <li><a href="#rezervacija">REZERVACIJA</a></li>
+    <li><a href="#dogadjaji">DOGAĐAJI</a></li>
+    <li><a href="#kontakt">KONTAKT</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-city">BAJINA BAŠTA · SRBIJA</div>
+  <h1 class="hero-title">FRATELI</h1>
+  <p class="hero-subtitle">NIGHT CLUB · 18+</p>
+  <div class="hero-divider"></div>
+  <div class="hero-pills">
+    <span class="pill">PETAK – SUBOTA</span>
+    <span class="pill">22:00 – 03:00</span>
+    <span class="pill">MILENKA TOPALOVIĆA 2</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#rezervacija" class="btn-gold">REZERVIŠI STO</a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>SCROLL</span>
+  </div>
+</div>
+
+<!-- REZERVACIJA -->
+<div id="rezervacija">
+  <div class="inner">
+    <div class="section-label">01 — REZERVACIJA</div>
+    <h2 class="section-title">Rezerviši sto</h2>
+    <div class="section-divider"></div>
+
+    <!-- FORM -->
+    <div id="form-wrap">
+      <div class="age-banner">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Ulaz dozvoljen osobama starijim od 18 godina. Na ulazu je potreban lični dokument.
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>IME I PREZIME</label>
+          <input type="text" id="f-name" placeholder="Vaše ime i prezime" required />
+        </div>
+        <div class="form-group">
+          <label>BROJ TELEFONA</label>
+          <input type="tel" id="f-phone" placeholder="+381 ..." required />
+        </div>
+        <div class="form-group">
+          <label>DATUM</label>
+          <input type="date" id="f-date" required />
+        </div>
+        <div class="form-group">
+          <label>BROJ GOSTIJU</label>
+          <select id="f-guests">
+            <option value="1-2">1 – 2 osobe</option>
+            <option value="3-4">3 – 4 osobe</option>
+            <option value="5-6" selected>5 – 6 osoba</option>
+            <option value="7-10">7 – 10 osoba</option>
+            <option value="10+">10+ osoba</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="table-label">TIP STOLA</p>
+      <div class="table-cards">
+        <div class="table-card" onclick="selTable(this,'Standardni')">
+          <div class="tc-icon">🪑</div>
+          <div class="tc-name">STANDARDNI</div>
+          <div class="tc-min">Standardna lokacija</div>
+        </div>
+        <div class="table-card selected" onclick="selTable(this,'VIP')">
+          <div class="tc-icon">👑</div>
+          <div class="tc-name">VIP</div>
+          <div class="tc-min">Poseban tretman</div>
+        </div>
+        <div class="table-card" onclick="selTable(this,'Bina')">
+          <div class="tc-icon">🎵</div>
+          <div class="tc-name">BINA</div>
+          <div class="tc-min">Premium lokacija</div>
+        </div>
+      </div>
+
+      <div class="form-group full" style="margin-bottom:16px">
+        <label>POSEBNI ZAHTJEVI</label>
+        <textarea id="f-note" rows="3" placeholder="Torta, dekoracija, posebna proslava..."></textarea>
+      </div>
+
+      <button class="btn-submit" id="submit-btn" onclick="submitForm()">
+        POTVRDI REZERVACIJU
+      </button>
+    </div>
+
+    <!-- CONFIRM -->
+    <div class="confirm-wrap" id="confirm-wrap">
+      <div class="confirm-check">✓</div>
+      <div class="confirm-title">Rezervacija primljena</div>
+      <div class="confirm-ref" id="c-ref">REF: #FRT-000000</div>
+      <div class="confirm-grid">
+        <div class="confirm-item"><label>IME</label><span id="c-name">—</span></div>
+        <div class="confirm-item"><label>DATUM</label><span id="c-date">—</span></div>
+        <div class="confirm-item"><label>GOSTI</label><span id="c-guests">—</span></div>
+        <div class="confirm-item"><label>STO</label><span id="c-table">—</span></div>
+      </div>
+      <p class="confirm-note">
+        Kontaktiraćemo vas na navedeni broj u što kraćem roku.<br/>
+        Za hitne upite: <strong>+381 65 26 66 709</strong> ili DM na
+        <a href="https://www.instagram.com/fratelinightclub/" target="_blank" style="color:var(--gold)">@fratelinightclub</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- DOGAĐAJI -->
+<section id="dogadjaji">
+  <div class="section-label">02 — PROGRAM</div>
+  <h2 class="section-title">Nadolazeći događaji</h2>
+  <div class="section-divider"></div>
+  <div class="events-grid">
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">06</div></div>
+      <div class="event-info">
+        <div class="event-name">Petak Night — DJ Resident</div>
+        <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
+      </div>
+      <span class="event-badge badge-open">OPEN</span>
+      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+    </div>
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">07</div></div>
+      <div class="event-info">
+        <div class="event-name">Subota — VIP Night</div>
+        <div class="event-meta">22:00 · Dress code obavezan</div>
+      </div>
+      <span class="event-badge badge-vip">VIP</span>
+      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+    </div>
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">13</div></div>
+      <div class="event-info">
+        <div class="event-name">Petak — Specijalni gost</div>
+        <div class="event-meta">22:00 · TBA</div>
+      </div>
+      <span class="event-badge badge-open">OPEN</span>
+      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+    </div>
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">14</div></div>
+      <div class="event-info">
+        <div class="event-name">Subota — Summer Edition</div>
+        <div class="event-meta">22:00 · Letnja žurka</div>
+      </div>
+      <span class="event-badge badge-vip">VIP</span>
+      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-label">03 — KONTAKT</div>
+  <h2 class="section-title">Pronađi nas</h2>
+  <div class="section-divider"></div>
+
+  <div class="contact-grid">
+    <div class="contact-cell">
+      <div class="cc-icon">📞</div>
+      <div>
+        <div class="cc-label">REZERVACIJE</div>
+        <div class="cc-val">+381 65 26 66 709</div>
+        <div class="cc-val2">Poziv ili WhatsApp</div>
+      </div>
+    </div>
+    <div class="contact-cell">
+      <div class="cc-icon">📸</div>
+      <div>
+        <div class="cc-label">INSTAGRAM</div>
+        <div class="cc-val">@fratelinightclub</div>
+        <div class="cc-val2">Info i DM rezervacije</div>
+      </div>
+    </div>
+    <div class="contact-cell">
+      <div class="cc-icon">🕙</div>
+      <div>
+        <div class="cc-label">RADNO VRIJEME</div>
+        <div class="cc-val">Petak – Subota</div>
+        <div class="cc-val2">22:00 – 03:00</div>
+      </div>
+    </div>
+    <div class="contact-cell">
+      <div class="cc-icon">📍</div>
+      <div>
+        <div class="cc-label">ADRESA</div>
+        <div class="cc-val">Milenka Topalovića 2</div>
+        <div class="cc-val2">Bajina Bašta 31250</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="map-frame">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.0!2d19.5676!3d43.9817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMilenka+Topalovi%C4%87a+2%2C+Bajina+Ba%C5%A1ta!5e0!3m2!1ssr!2srs!4v1"
+      allowfullscreen loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 FRATELI NIGHT CLUB · Milenka Topalovića 2, Bajina Bašta 31250</p>
+  <p style="margin-top:8px"><a href="https://www.instagram.com/fratelinightclub/" target="_blank">@fratelinightclub</a></p>
+</footer>
+
+<script>
+  // ── CONFIG — ZAMIJENI SA TVOJIM APPS SCRIPT URL-om ──
+  const APPS_SCRIPT_URL = 'TVOJ_APPS_SCRIPT_URL_OVDJE';
+
+  // ── LOADER ──
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const l = document.getElementById('loader');
+      l.style.opacity = '0';
+      setTimeout(() => l.style.display = 'none', 600);
+    }, 1200);
+  });
+
+  // ── DEFAULT DATE ──
+  const dateInput = document.getElementById('f-date');
+  const today = new Date();
+  const friday = new Date(today);
+  const day = today.getDay();
+  const daysToFriday = day <= 5 ? 5 - day : 6;
+  friday.setDate(today.getDate() + daysToFriday);
+  dateInput.value = friday.toISOString().split('T')[0];
+  dateInput.min = today.toISOString().split('T')[0];
+
+  // ── TABLE SELECT ──
+  let selectedTable = 'VIP';
+  function selTable(el, name) {
+    document.querySelectorAll('.table-card').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedTable = name;
+  }
+
+  // ── SCROLL TO REZ ──
+  function scrollToRez() {
+    document.getElementById('rezervacija').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── TOAST ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // ── SUBMIT ──
+  async function submitForm() {
+    const name = document.getElementById('f-name').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const date = document.getElementById('f-date').value;
+    const guests = document.getElementById('f-guests').value;
+    const note = document.getElementById('f-note').value.trim();
+
+    if (!name) { showToast('⚠ Unesite ime i prezime.'); return; }
+    if (!phone) { showToast('⚠ Unesite broj telefona.'); return; }
+    if (!date) { showToast('⚠ Odaberite datum.'); return; }
+
+    const btn = document.getElementById('submit-btn');
+    btn.disabled = true;
+    btn.textContent = 'SLANJE...';
+
+    const ref = 'FRT-' + Math.floor(100000 + Math.random() * 900000);
+    const timestamp = new Date().toLocaleString('sr-RS');
+
+    const payload = {
+      timestamp,
+      ref,
+      name,
+      phone,
+      date,
+      guests,
+      table: selectedTable,
+      note
+    };
+
+    try {
+      // Šalje u Google Sheets
+      if (APPS_SCRIPT_URL !== 'TVOJ_APPS_SCRIPT_URL_OVDJE') {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+
+      // Prikaži potvrdu
+      document.getElementById('c-name').textContent = name;
+      document.getElementById('c-date').textContent = date;
+      document.getElementById('c-guests').textContent = guests;
+      document.getElementById('c-table').textContent = selectedTable;
+      document.getElementById('c-ref').textContent = 'REF: #' + ref;
+
+      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('confirm-wrap').style.display = 'block';
+      showToast('✓ Rezervacija je poslata!');
+
+    } catch (err) {
+      showToast('⚠ Greška. Pozovi nas na +381 65 26 66 709');
+      btn.disabled = false;
+      btn.textContent = 'POTVRDI REZERVACIJU';
+    }
+  }
+</script>
+</body>
+</html>
