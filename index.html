@@ -5,503 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Frateli Night Club — Bajina Bašta</title>
   <meta name="description" content="Frateli Night Club Bajina Bašta — rezervacije stolova, VIP, petak i subota 22h–03h." />
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
   <style>
     :root {
-      --bg: #080510;
-      --bg2: #0f0a1a;
-      --bg3: #160f25;
-      --gold: #c9a84c;
-      --gold2: #e8c96a;
+      --bg:     #12091f;
+      --bg2:    #1a1030;
+      --bg3:    #221540;
+      --gold:   #d4a843;
+      --gold2:  #eac96a;
       --purple: #9333ea;
-      --purple2: #a855f7;
-      --text: #f0ecf8;
-      --text2: rgba(240,236,248,0.55);
-      --text3: rgba(240,236,248,0.3);
-      --border: rgba(201,168,76,0.15);
-      --border2: rgba(201,168,76,0.3);
-      --radius: 12px;
-      --radius-sm: 8px;
+      --text:   #f5f0ff;
+      --text2:  rgba(245,240,255,0.65);
+      --text3:  rgba(245,240,255,0.38);
+      --border: rgba(212,168,67,0.18);
+      --border2:rgba(212,168,67,0.35);
+      --radius: 14px;
+      --radius-sm: 9px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Outfit', sans-serif;
+      font-size: 16px;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    /* ── NOISE TEXTURE ── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.4;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: -20%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(147,51,234,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-glow2 {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 800px;
-      height: 300px;
-      background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .hero-city {
-      font-family: 'Outfit', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 8px;
-      color: var(--gold);
-      opacity: 0.8;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 1s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(72px, 14vw, 140px);
-      font-weight: 300;
-      letter-spacing: 16px;
-      color: var(--text);
-      line-height: 1;
-      animation: fadeUp 1s 0.15s ease both;
-    }
-
-    .hero-subtitle {
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 10px;
-      color: var(--text3);
-      margin-top: 10px;
-      animation: fadeUp 1s 0.25s ease both;
-    }
-
-    .hero-divider {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
-      margin: 2rem auto;
-      animation: fadeUp 1s 0.35s ease both;
-    }
-
-    .hero-pills {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 1s 0.45s ease both;
-    }
-
-    .pill {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--text2);
-      border: 0.5px solid var(--border2);
-      border-radius: 30px;
-      padding: 6px 18px;
-      backdrop-filter: blur(4px);
-    }
-
-    .hero-cta {
-      margin-top: 3rem;
-      animation: fadeUp 1s 0.55s ease both;
-    }
-
-    .btn-gold {
-      display: inline-block;
-      padding: 14px 40px;
-      border: 1px solid var(--gold);
-      border-radius: 2px;
-      color: var(--gold);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      text-decoration: none;
-      background: transparent;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-    }
-    .btn-gold:hover {
-      background: var(--gold);
-      color: var(--bg);
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .scroll-hint span {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: var(--text3);
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      position: relative;
-      z-index: 1;
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .section-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 6px;
-      color: var(--gold);
-      opacity: 0.8;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 300;
-      letter-spacing: 4px;
-      color: var(--text);
-      margin-bottom: 3rem;
-    }
-
-    .section-divider {
-      width: 40px;
-      height: 1px;
-      background: var(--gold);
-      opacity: 0.5;
-      margin-bottom: 2.5rem;
-    }
-
-    /* ── RESERVATION FORM ── */
-    #rezervacija {
-      background: var(--bg2);
-      max-width: 100%;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    #rezervacija .inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 5rem 2rem;
-    }
-
-    .age-banner {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(201,168,76,0.06);
-      border: 0.5px solid var(--border2);
-      border-radius: var(--radius-sm);
-      padding: 12px 16px;
-      font-size: 13px;
-      color: var(--text2);
-      margin-bottom: 2rem;
-    }
-    .age-banner svg { flex-shrink: 0; color: var(--gold); }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-    @media (max-width: 560px) {
-      .form-grid { grid-template-columns: 1fr; }
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .form-group.full { grid-column: 1 / -1; }
-
-    .form-group label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      color: var(--text3);
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255,255,255,0.04);
-      border: 0.5px solid rgba(201,168,76,0.2);
-      border-radius: var(--radius-sm);
-      padding: 12px 14px;
-      color: var(--text);
-      font-family: 'Outfit', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.2s;
-      -webkit-appearance: none;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: var(--text3); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-color: var(--gold); }
-    .form-group select option { background: #160f25; color: var(--text); }
-
-    .table-label {
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 2px;
-      color: var(--text3);
-      margin-bottom: 10px;
-    }
-
-    .table-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    @media (max-width: 480px) {
-      .table-cards { grid-template-columns: 1fr; }
-    }
-
-    .table-card {
-      border: 0.5px solid rgba(201,168,76,0.15);
-      border-radius: var(--radius);
-      padding: 18px 14px;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      background: rgba(255,255,255,0.02);
-    }
-    .table-card:hover { border-color: rgba(201,168,76,0.4); }
-    .table-card.selected {
-      border-color: var(--gold);
-      background: rgba(201,168,76,0.06);
-    }
-    .tc-icon { font-size: 24px; margin-bottom: 8px; }
-    .tc-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-      letter-spacing: 1px;
-    }
-    .tc-min { font-size: 11px; color: var(--text3); margin-top: 4px; }
-
-    .btn-submit {
-      width: 100%;
-      padding: 15px;
-      background: transparent;
-      border: 1px solid var(--gold);
-      border-radius: 2px;
-      color: var(--gold);
-      font-family: 'Outfit', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 4px;
-      cursor: pointer;
-      transition: background 0.3s, color 0.3s;
-      margin-top: 8px;
-    }
-    .btn-submit:hover { background: var(--gold); color: var(--bg); }
-    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
-
-    /* ── CONFIRM ── */
-    .confirm-wrap {
-      display: none;
-      text-align: center;
-      padding: 3rem 1rem;
-      animation: fadeUp 0.5s ease both;
-    }
-    .confirm-check {
-      width: 64px; height: 64px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 26px;
-    }
-    .confirm-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 32px; font-weight: 300; letter-spacing: 3px;
-      color: var(--text); margin-bottom: 6px;
-    }
-    .confirm-ref { font-size: 11px; letter-spacing: 3px; color: var(--gold); margin-bottom: 2rem; }
-    .confirm-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-      border-top: 0.5px solid var(--border); padding-top: 1.5rem;
-      max-width: 400px; margin: 0 auto 1.5rem; text-align: left;
-    }
-    .confirm-item label { font-size: 10px; letter-spacing: 2px; color: var(--text3); display: block; margin-bottom: 4px; }
-    .confirm-item span { font-size: 14px; font-weight: 400; color: var(--text); }
-    .confirm-note { font-size: 13px; color: var(--text2); line-height: 1.7; }
-
-    /* ── EVENTS ── */
-    .events-grid { display: flex; flex-direction: column; gap: 1px; }
-    .event-row {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 1.25rem 0;
-      border-bottom: 0.5px solid var(--border);
-      transition: background 0.15s;
-    }
-    .event-row:first-child { border-top: 0.5px solid var(--border); }
-    .event-date-box {
-      min-width: 52px; text-align: center;
-    }
-    .edm { font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--gold); }
-    .edd { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--text); line-height: 1; }
-    .event-info { flex: 1; }
-    .event-name { font-size: 15px; font-weight: 400; color: var(--text); }
-    .event-meta { font-size: 12px; color: var(--text3); margin-top: 4px; letter-spacing: 0.5px; }
-    .event-badge {
-      font-size: 10px; letter-spacing: 2px;
-      padding: 4px 12px; border-radius: 30px;
-      border: 0.5px solid;
-    }
-    .badge-open { border-color: rgba(147,51,234,0.4); color: var(--purple2); }
-    .badge-vip { border-color: var(--border2); color: var(--gold); }
-    .event-btn {
-      font-size: 11px; letter-spacing: 2px;
-      padding: 8px 16px;
-      border: 0.5px solid var(--border2);
-      border-radius: 2px;
-      background: none; color: var(--gold); cursor: pointer;
-      transition: background 0.2s, color 0.2s; white-space: nowrap;
-      font-family: 'Outfit', sans-serif;
-    }
-    .event-btn:hover { background: var(--gold); color: var(--bg); }
-
-    /* ── CONTACT ── */
-    #kontakt { border-top: 1px solid var(--border); }
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-      border: 0.5px solid var(--border); border-radius: var(--radius);
-      overflow: hidden; margin-bottom: 2rem;
-    }
-    @media (max-width: 560px) {
-      .contact-grid { grid-template-columns: 1fr; }
-    }
-    .contact-cell {
-      padding: 1.5rem;
-      background: var(--bg2);
-      display: flex; gap: 14px; align-items: flex-start;
-    }
-    .cc-icon { font-size: 22px; color: var(--gold); opacity: 0.7; flex-shrink: 0; margin-top: 2px; }
-    .cc-label { font-size: 10px; letter-spacing: 2px; color: var(--text3); margin-bottom: 5px; }
-    .cc-val { font-size: 15px; font-weight: 400; color: var(--text); }
-    .cc-val2 { font-size: 12px; color: var(--text2); margin-top: 3px; }
-
-    .map-frame {
-      width: 100%;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 0.5px solid var(--border);
-    }
-    .map-frame iframe {
-      width: 100%; height: 260px; display: block; border: none;
-      filter: grayscale(0.3) brightness(0.85);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 12px;
-      color: var(--text3);
-      letter-spacing: 1px;
-      border-top: 0.5px solid var(--border);
-    }
-    footer a { color: var(--gold); opacity: 0.6; text-decoration: none; }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.25rem 2rem;
-      background: rgba(8,5,16,0.7);
-      backdrop-filter: blur(12px);
-      border-bottom: 0.5px solid var(--border);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      font-weight: 300;
-      letter-spacing: 6px;
-      color: var(--text);
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--text2);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-    @media (max-width: 560px) {
-      .nav-links { display: none; }
-    }
-
-    /* ── LOADING OVERLAY ── */
+    /* LOADER */
     #loader {
       position: fixed; inset: 0;
       background: var(--bg);
@@ -511,56 +45,361 @@
     }
     .loader-text {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      font-weight: 300;
-      letter-spacing: 12px;
+      font-size: 52px; font-weight: 300; letter-spacing: 14px;
       color: var(--text);
-      animation: pulse 1.5s ease-in-out infinite;
+      animation: pulse 1.4s ease-in-out infinite;
     }
 
-    /* ── ANIMATIONS ── */
+    /* TOAST */
+    #toast {
+      position: fixed; bottom: 1.5rem; left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--bg3); border: 0.5px solid var(--gold);
+      border-radius: var(--radius-sm); padding: 13px 26px;
+      font-size: 15px; color: var(--text); z-index: 200;
+      transition: transform 0.4s ease; white-space: nowrap;
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.5rem;
+      background: rgba(18,9,31,0.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; font-weight: 300; letter-spacing: 7px; color: var(--text);
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 2px;
+      color: var(--text2); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 580px) { .nav-links { display: none; } }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: -15%; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(147,51,234,0.2) 0%, transparent 68%);
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 350px;
+      background: radial-gradient(ellipse, rgba(212,168,67,0.09) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-city {
+      font-size: 12px; font-weight: 500; letter-spacing: 8px;
+      color: var(--gold); opacity: 0.85; margin-bottom: 1.5rem;
+      animation: fadeUp 1s ease both;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(70px, 16vw, 150px);
+      font-weight: 300; letter-spacing: 18px;
+      color: var(--text); line-height: 1;
+      animation: fadeUp 1s 0.15s ease both;
+    }
+    .hero-subtitle {
+      font-size: 12px; letter-spacing: 10px;
+      color: var(--text3); margin-top: 12px;
+      animation: fadeUp 1s 0.25s ease both;
+    }
+    .hero-divider {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      animation: fadeUp 1s 0.35s ease both;
+    }
+    .hero-pills {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+      animation: fadeUp 1s 0.45s ease both;
+    }
+    .pill {
+      font-size: 12px; letter-spacing: 1.5px; color: var(--text2);
+      border: 0.5px solid var(--border2); border-radius: 30px;
+      padding: 7px 18px; backdrop-filter: blur(4px);
+    }
+    .hero-cta { margin-top: 3rem; animation: fadeUp 1s 0.55s ease both; }
+    .btn-gold {
+      display: inline-block; padding: 15px 44px;
+      border: 1px solid var(--gold); border-radius: 2px;
+      color: var(--gold); font-size: 12px; font-weight: 500;
+      letter-spacing: 4px; text-decoration: none; background: transparent;
+      cursor: pointer; transition: background 0.3s, color 0.3s;
+    }
+    .btn-gold:hover { background: var(--gold); color: var(--bg); }
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      animation: fadeUp 1s 0.8s ease both;
+    }
+    .scroll-hint span { font-size: 10px; letter-spacing: 3px; color: var(--text3); }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* SECTIONS */
+    section {
+      position: relative; z-index: 1;
+      max-width: 880px; margin: 0 auto; padding: 5rem 1.5rem;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: 6px;
+      color: var(--gold); opacity: 0.8; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(34px, 5vw, 50px);
+      font-weight: 300; letter-spacing: 4px;
+      color: var(--text); margin-bottom: 1rem;
+    }
+    .section-divider {
+      width: 40px; height: 1px;
+      background: var(--gold); opacity: 0.5; margin-bottom: 2.5rem;
+    }
+
+    /* REZERVACIJA */
+    #rezervacija {
+      background: var(--bg2); max-width: 100%;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    #rezervacija .inner {
+      max-width: 880px; margin: 0 auto; padding: 5rem 1.5rem;
+    }
+    .age-banner {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(212,168,67,0.07);
+      border: 0.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 13px 16px; font-size: 14px;
+      color: var(--text2); margin-bottom: 2rem;
+    }
+
+    /* TOGGLE: Dogadjaj / Datum */
+    .toggle-wrap {
+      display: flex; gap: 0;
+      border: 0.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      overflow: hidden; margin-bottom: 1.5rem;
+    }
+    .toggle-btn {
+      flex: 1; padding: 12px;
+      background: transparent;
+      border: none; color: var(--text2);
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px; font-weight: 500;
+      letter-spacing: 1.5px; cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .toggle-btn.active {
+      background: rgba(212,168,67,0.12);
+      color: var(--gold);
+    }
+
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 16px;
+    }
+    @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; color: var(--text3);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.05);
+      border: 0.5px solid rgba(212,168,67,0.22);
+      border-radius: var(--radius-sm);
+      padding: 13px 15px; color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-size: 15px; outline: none;
+      transition: border-color 0.2s; -webkit-appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--text3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: #1a1030; color: var(--text); }
+
+    .table-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 2px; color: var(--text3); margin-bottom: 10px;
+    }
+    .table-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-bottom: 20px;
+    }
+    @media (max-width: 480px) { .table-cards { grid-template-columns: 1fr; } }
+    .table-card {
+      border: 0.5px solid rgba(212,168,67,0.18);
+      border-radius: var(--radius);
+      padding: 20px 14px; text-align: center; cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      background: rgba(255,255,255,0.02);
+    }
+    .table-card:hover { border-color: rgba(212,168,67,0.45); }
+    .table-card.selected {
+      border-color: var(--gold);
+      background: rgba(212,168,67,0.07);
+    }
+    .tc-icon { font-size: 26px; margin-bottom: 9px; }
+    .tc-name { font-size: 14px; font-weight: 500; color: var(--text); letter-spacing: 1px; }
+    .tc-min { font-size: 12px; color: var(--text3); margin-top: 5px; }
+
+    .btn-submit {
+      width: 100%; padding: 16px;
+      background: transparent; border: 1px solid var(--gold);
+      border-radius: 2px; color: var(--gold);
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px; font-weight: 500; letter-spacing: 4px;
+      cursor: pointer; transition: background 0.3s, color 0.3s; margin-top: 8px;
+    }
+    .btn-submit:hover { background: var(--gold); color: var(--bg); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* CONFIRM */
+    .confirm-wrap {
+      display: none; text-align: center;
+      padding: 3rem 1rem;
+      animation: fadeUp 0.5s ease both;
+    }
+    .confirm-check {
+      width: 68px; height: 68px;
+      border: 1px solid var(--gold); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; font-size: 28px;
+    }
+    .confirm-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px; font-weight: 300; letter-spacing: 3px;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .confirm-ref { font-size: 12px; letter-spacing: 3px; color: var(--gold); margin-bottom: 2rem; }
+    .confirm-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      border-top: 0.5px solid var(--border); padding-top: 1.5rem;
+      max-width: 420px; margin: 0 auto 1.5rem; text-align: left;
+    }
+    .confirm-item label {
+      font-size: 10px; letter-spacing: 2px;
+      color: var(--text3); display: block; margin-bottom: 4px;
+    }
+    .confirm-item span { font-size: 15px; font-weight: 400; color: var(--text); }
+    .confirm-note { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* EVENTS */
+    .events-grid { display: flex; flex-direction: column; gap: 0; }
+    .event-row {
+      display: flex; align-items: center; gap: 1.25rem;
+      padding: 1.3rem 0;
+      border-bottom: 0.5px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .event-row:first-child { border-top: 0.5px solid var(--border); }
+    .event-date-box { min-width: 52px; text-align: center; }
+    .edm { font-size: 10px; font-weight: 500; letter-spacing: 2px; color: var(--gold); }
+    .edd {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 34px; font-weight: 300; color: var(--text); line-height: 1;
+    }
+    .event-info { flex: 1; min-width: 160px; }
+    .event-name { font-size: 16px; font-weight: 400; color: var(--text); }
+    .event-meta { font-size: 13px; color: var(--text3); margin-top: 4px; }
+    .event-badge {
+      font-size: 10px; letter-spacing: 2px;
+      padding: 4px 12px; border-radius: 30px; border: 0.5px solid;
+    }
+    .badge-open { border-color: rgba(147,51,234,0.45); color: #b57bff; }
+    .badge-vip  { border-color: var(--border2); color: var(--gold); }
+    .event-btn {
+      font-size: 11px; letter-spacing: 2px;
+      padding: 9px 18px;
+      border: 0.5px solid var(--border2); border-radius: 2px;
+      background: none; color: var(--gold); cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: background 0.2s, color 0.2s; white-space: nowrap;
+    }
+    .event-btn:hover { background: var(--gold); color: var(--bg); }
+
+    /* CONTACT */
+    #kontakt { border-top: 1px solid var(--border); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      border: 0.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 2rem;
+    }
+    @media (max-width: 560px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-cell {
+      padding: 1.6rem; background: var(--bg2);
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .cc-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
+    .cc-label { font-size: 11px; letter-spacing: 2px; color: var(--text3); margin-bottom: 6px; }
+    .cc-val { font-size: 16px; font-weight: 400; color: var(--text); }
+    .cc-val2 { font-size: 13px; color: var(--text2); margin-top: 3px; }
+    .map-frame {
+      width: 100%; border-radius: var(--radius); overflow: hidden;
+      border: 0.5px solid var(--border);
+    }
+    .map-frame iframe {
+      width: 100%; height: 280px; display: block; border: none;
+      filter: grayscale(0.2) brightness(0.9);
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 2rem 1rem;
+      font-size: 13px; color: var(--text3); letter-spacing: 1px;
+      border-top: 0.5px solid var(--border);
+    }
+    footer a { color: var(--gold); opacity: 0.6; text-decoration: none; }
+
+    /* ANIMATIONS */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(22px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50%       { opacity: 1;   transform: scaleY(1.1); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.4; }
+      0%, 100% { opacity: 0.3; }
       50%       { opacity: 1; }
     }
-
-    /* ── TOAST ── */
-    #toast {
-      position: fixed;
-      bottom: 2rem; left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--bg3);
-      border: 0.5px solid var(--gold);
-      border-radius: var(--radius-sm);
-      padding: 12px 24px;
-      font-size: 13px;
-      color: var(--text);
-      z-index: 200;
-      transition: transform 0.4s ease;
-      white-space: nowrap;
+    @keyframes pulse {
+      0%, 100% { opacity: 0.35; }
+      50%       { opacity: 1; }
     }
-    #toast.show { transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-text">FRATELI</div>
-</div>
-
-<!-- TOAST -->
+<div id="loader"><div class="loader-text">FRATELI</div></div>
 <div id="toast">✓ Rezervacija je poslata!</div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">FRATELI</div>
   <ul class="nav-links">
@@ -599,25 +438,24 @@
     <h2 class="section-title">Rezerviši sto</h2>
     <div class="section-divider"></div>
 
-    <!-- FORM -->
     <div id="form-wrap">
       <div class="age-banner">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#d4a843" stroke-width="1.5" style="flex-shrink:0"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Ulaz dozvoljen osobama starijim od 18 godina. Na ulazu je potreban lični dokument.
       </div>
 
       <div class="form-grid">
         <div class="form-group">
           <label>IME I PREZIME</label>
-          <input type="text" id="f-name" placeholder="Vaše ime i prezime" required />
+          <input type="text" id="f-name" placeholder="Vaše ime i prezime" />
         </div>
         <div class="form-group">
           <label>BROJ TELEFONA</label>
-          <input type="tel" id="f-phone" placeholder="+381 ..." required />
+          <input type="tel" id="f-phone" placeholder="+381 ..." />
         </div>
         <div class="form-group">
-          <label>DATUM</label>
-          <input type="date" id="f-date" required />
+          <label>GODINE</label>
+          <input type="number" id="f-age" placeholder="Vaše godine" min="18" max="99" />
         </div>
         <div class="form-group">
           <label>BROJ GOSTIJU</label>
@@ -631,27 +469,64 @@
         </div>
       </div>
 
+      <!-- TOGGLE: Dogadjaj ili Datum -->
+      <p class="table-label" style="margin-bottom:10px">ODABERI DATUM ILI DOGAĐAJ</p>
+      <div class="toggle-wrap">
+        <button class="toggle-btn active" id="tog-event" onclick="switchToggle('event')">IZABERI DOGAĐAJ</button>
+        <button class="toggle-btn" id="tog-date" onclick="switchToggle('date')">IZABERI DATUM</button>
+      </div>
+
+      <!-- DOGAĐAJ -->
+      <div id="pick-event" class="form-group full" style="margin-bottom:16px">
+        <label>DOGAĐAJ</label>
+        <select id="f-event">
+          <option value="">— Odaberi događaj —</option>
+          <option value="09.07.2026 — Desingerica">09.07.2026 — Desingerica</option>
+          <option value="11.07.2026 — Redovna subota">11.07.2026 — Redovna subota</option>
+          <option value="17.07.2026 — Redovna subota">17.07.2026 — Redovna subota</option>
+          <option value="18.07.2026 — Redovna subota">18.07.2026 — Redovna subota</option>
+          <option value="24.07.2026 — Redovna subota">24.07.2026 — Redovna subota</option>
+          <option value="25.07.2026 — Redovna subota">25.07.2026 — Redovna subota</option>
+          <option value="31.07.2026 — Redovna subota">31.07.2026 — Redovna subota</option>
+          <option value="01.08.2026 — Redovna subota">01.08.2026 — Redovna subota</option>
+          <option value="07.08.2026 — Redovna subota">07.08.2026 — Redovna subota</option>
+          <option value="08.08.2026 — Redovna subota">08.08.2026 — Redovna subota</option>
+          <option value="14.08.2026 — Redovna subota">14.08.2026 — Redovna subota</option>
+          <option value="15.08.2026 — Redovna subota">15.08.2026 — Redovna subota</option>
+          <option value="21.08.2026 — Redovna subota">21.08.2026 — Redovna subota</option>
+          <option value="22.08.2026 — Redovna subota">22.08.2026 — Redovna subota</option>
+          <option value="28.08.2026 — Redovna subota">28.08.2026 — Redovna subota</option>
+          <option value="29.08.2026 — Redovna subota">29.08.2026 — Redovna subota</option>
+        </select>
+      </div>
+
+      <!-- DATUM -->
+      <div id="pick-date" class="form-group full" style="margin-bottom:16px; display:none">
+        <label>DATUM</label>
+        <input type="date" id="f-date" />
+      </div>
+
       <p class="table-label">TIP STOLA</p>
       <div class="table-cards">
-        <div class="table-card" onclick="selTable(this,'Standardni')">
-          <div class="tc-icon">🪑</div>
-          <div class="tc-name">STANDARDNI</div>
-          <div class="tc-min">Standardna lokacija</div>
+        <div class="table-card" onclick="selTable(this,'Barski')">
+          <div class="tc-icon">🍸</div>
+          <div class="tc-name">BARSKI</div>
+          <div class="tc-min">Uz bar</div>
         </div>
-        <div class="table-card selected" onclick="selTable(this,'VIP')">
+        <div class="table-card selected" onclick="selTable(this,'Separe')">
           <div class="tc-icon">👑</div>
-          <div class="tc-name">VIP</div>
-          <div class="tc-min">Poseban tretman</div>
+          <div class="tc-name">SEPARE</div>
+          <div class="tc-min">Odvojeni prostor</div>
         </div>
-        <div class="table-card" onclick="selTable(this,'Bina')">
+        <div class="table-card" onclick="selTable(this,'Sank')">
           <div class="tc-icon">🎵</div>
-          <div class="tc-name">BINA</div>
-          <div class="tc-min">Premium lokacija</div>
+          <div class="tc-name">SANK</div>
+          <div class="tc-min">Uz sank</div>
         </div>
       </div>
 
       <div class="form-group full" style="margin-bottom:16px">
-        <label>POSEBNI ZAHTJEVI</label>
+        <label>POSEBNI ZAHTEVI</label>
         <textarea id="f-note" rows="3" placeholder="Torta, dekoracija, posebna proslava..."></textarea>
       </div>
 
@@ -667,7 +542,7 @@
       <div class="confirm-ref" id="c-ref">REF: #FRT-000000</div>
       <div class="confirm-grid">
         <div class="confirm-item"><label>IME</label><span id="c-name">—</span></div>
-        <div class="confirm-item"><label>DATUM</label><span id="c-date">—</span></div>
+        <div class="confirm-item"><label>DATUM / DOGAĐAJ</label><span id="c-date">—</span></div>
         <div class="confirm-item"><label>GOSTI</label><span id="c-guests">—</span></div>
         <div class="confirm-item"><label>STO</label><span id="c-table">—</span></div>
       </div>
@@ -683,44 +558,53 @@
 <!-- DOGAĐAJI -->
 <section id="dogadjaji">
   <div class="section-label">02 — PROGRAM</div>
-  <h2 class="section-title">Nadolazeći događaji</h2>
+  <h2 class="section-title">Nadolazeci dogadjaji</h2>
   <div class="section-divider"></div>
   <div class="events-grid">
     <div class="event-row">
-      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">06</div></div>
+      <div class="event-date-box"><div class="edm">JUL</div><div class="edd">09</div></div>
       <div class="event-info">
-        <div class="event-name">Petak Night — DJ Resident</div>
+        <div class="event-name">Desingerica — Live nastup</div>
+        <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
+      </div>
+      <span class="event-badge badge-vip">SPECIJAL</span>
+      <button class="event-btn" onclick="selectEvent('09.07.2026 — Desingerica')">REZERVISI</button>
+    </div>
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">JUL</div><div class="edd">11</div></div>
+      <div class="event-info">
+        <div class="event-name">Redovna subota — DJ Resident</div>
         <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
       </div>
       <span class="event-badge badge-open">OPEN</span>
-      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+      <button class="event-btn" onclick="selectEvent('11.07.2026 — Redovna subota')">REZERVISI</button>
     </div>
     <div class="event-row">
-      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">07</div></div>
+      <div class="event-date-box"><div class="edm">JUL</div><div class="edd">18</div></div>
       <div class="event-info">
-        <div class="event-name">Subota — VIP Night</div>
-        <div class="event-meta">22:00 · Dress code obavezan</div>
-      </div>
-      <span class="event-badge badge-vip">VIP</span>
-      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
-    </div>
-    <div class="event-row">
-      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">13</div></div>
-      <div class="event-info">
-        <div class="event-name">Petak — Specijalni gost</div>
-        <div class="event-meta">22:00 · TBA</div>
+        <div class="event-name">Redovna subota — DJ Resident</div>
+        <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
       </div>
       <span class="event-badge badge-open">OPEN</span>
-      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+      <button class="event-btn" onclick="selectEvent('18.07.2026 — Redovna subota')">REZERVISI</button>
     </div>
     <div class="event-row">
-      <div class="event-date-box"><div class="edm">JUN</div><div class="edd">14</div></div>
+      <div class="event-date-box"><div class="edm">JUL</div><div class="edd">25</div></div>
       <div class="event-info">
-        <div class="event-name">Subota — Summer Edition</div>
-        <div class="event-meta">22:00 · Letnja žurka</div>
+        <div class="event-name">Redovna subota — DJ Resident</div>
+        <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
       </div>
-      <span class="event-badge badge-vip">VIP</span>
-      <button class="event-btn" onclick="scrollToRez()">REZERVIŠI</button>
+      <span class="event-badge badge-open">OPEN</span>
+      <button class="event-btn" onclick="selectEvent('25.07.2026 — Redovna subota')">REZERVISI</button>
+    </div>
+    <div class="event-row">
+      <div class="event-date-box"><div class="edm">AVG</div><div class="edd">01</div></div>
+      <div class="event-info">
+        <div class="event-name">Redovna subota — DJ Resident</div>
+        <div class="event-meta">22:00 · Frateli, Bajina Bašta</div>
+      </div>
+      <span class="event-badge badge-open">OPEN</span>
+      <button class="event-btn" onclick="selectEvent('01.08.2026 — Redovna subota')">REZERVISI</button>
     </div>
   </div>
 </section>
@@ -728,9 +612,8 @@
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="section-label">03 — KONTAKT</div>
-  <h2 class="section-title">Pronađi nas</h2>
+  <h2 class="section-title">Pronadji nas</h2>
   <div class="section-divider"></div>
-
   <div class="contact-grid">
     <div class="contact-cell">
       <div class="cc-icon">📞</div>
@@ -751,7 +634,7 @@
     <div class="contact-cell">
       <div class="cc-icon">🕙</div>
       <div>
-        <div class="cc-label">RADNO VRIJEME</div>
+        <div class="cc-label">RADNO VREME</div>
         <div class="cc-val">Petak – Subota</div>
         <div class="cc-val2">22:00 – 03:00</div>
       </div>
@@ -765,27 +648,23 @@
       </div>
     </div>
   </div>
-
   <div class="map-frame">
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.0!2d19.5676!3d43.9817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMilenka+Topalovi%C4%87a+2%2C+Bajina+Ba%C5%A1ta!5e0!3m2!1ssr!2srs!4v1"
-      allowfullscreen loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
     </iframe>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 FRATELI NIGHT CLUB · Milenka Topalovića 2, Bajina Bašta 31250</p>
+  <p>© 2026 FRATELI NIGHT CLUB · Milenka Topalovića 2, Bajina Bašta 31250</p>
   <p style="margin-top:8px"><a href="https://www.instagram.com/fratelinightclub/" target="_blank">@fratelinightclub</a></p>
 </footer>
 
 <script>
-  // ── CONFIG — ZAMIJENI SA TVOJIM APPS SCRIPT URL-om ──
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwtOz-FQKUNa27L9AqVgkdT-NxjBTAdeOj7tvKUMPJd7_HyZyxK1dl-zJkcR3haQD7m/exec';
 
-  // ── LOADER ──
+  // LOADER
   window.addEventListener('load', () => {
     setTimeout(() => {
       const l = document.getElementById('loader');
@@ -794,30 +673,38 @@
     }, 1200);
   });
 
-  // ── DEFAULT DATE ──
-  const dateInput = document.getElementById('f-date');
+  // DEFAULT DATE
   const today = new Date();
-  const friday = new Date(today);
-  const day = today.getDay();
-  const daysToFriday = day <= 5 ? 5 - day : 6;
-  friday.setDate(today.getDate() + daysToFriday);
-  dateInput.value = friday.toISOString().split('T')[0];
-  dateInput.min = today.toISOString().split('T')[0];
+  const di = document.getElementById('f-date');
+  di.min = today.toISOString().split('T')[0];
+  di.value = today.toISOString().split('T')[0];
 
-  // ── TABLE SELECT ──
-  let selectedTable = 'VIP';
+  // TOGGLE Event / Date
+  let pickMode = 'event';
+  function switchToggle(mode) {
+    pickMode = mode;
+    document.getElementById('tog-event').classList.toggle('active', mode === 'event');
+    document.getElementById('tog-date').classList.toggle('active', mode === 'date');
+    document.getElementById('pick-event').style.display = mode === 'event' ? 'flex' : 'none';
+    document.getElementById('pick-date').style.display  = mode === 'date'  ? 'flex' : 'none';
+  }
+
+  // Select event from list and scroll to form
+  function selectEvent(val) {
+    switchToggle('event');
+    document.getElementById('f-event').value = val;
+    document.getElementById('rezervacija').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // TABLE SELECT
+  let selectedTable = 'Separe';
   function selTable(el, name) {
     document.querySelectorAll('.table-card').forEach(c => c.classList.remove('selected'));
     el.classList.add('selected');
     selectedTable = name;
   }
 
-  // ── SCROLL TO REZ ──
-  function scrollToRez() {
-    document.getElementById('rezervacija').scrollIntoView({ behavior: 'smooth' });
-  }
-
-  // ── TOAST ──
+  // TOAST
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
@@ -825,17 +712,26 @@
     setTimeout(() => t.classList.remove('show'), 3500);
   }
 
-  // ── SUBMIT ──
+  // SUBMIT
   async function submitForm() {
-    const name = document.getElementById('f-name').value.trim();
+    const name  = document.getElementById('f-name').value.trim();
     const phone = document.getElementById('f-phone').value.trim();
-    const date = document.getElementById('f-date').value;
+    const age   = document.getElementById('f-age').value.trim();
     const guests = document.getElementById('f-guests').value;
-    const note = document.getElementById('f-note').value.trim();
+    const note  = document.getElementById('f-note').value.trim();
 
-    if (!name) { showToast('⚠ Unesite ime i prezime.'); return; }
+    let dateOrEvent = '';
+    if (pickMode === 'event') {
+      dateOrEvent = document.getElementById('f-event').value;
+      if (!dateOrEvent) { showToast('⚠ Odaberi događaj.'); return; }
+    } else {
+      dateOrEvent = document.getElementById('f-date').value;
+      if (!dateOrEvent) { showToast('⚠ Odaberi datum.'); return; }
+    }
+
+    if (!name)  { showToast('⚠ Unesite ime i prezime.'); return; }
     if (!phone) { showToast('⚠ Unesite broj telefona.'); return; }
-    if (!date) { showToast('⚠ Odaberite datum.'); return; }
+    if (age && parseInt(age) < 18) { showToast('⚠ Ulaz je dozvoljen samo osobama starijim od 18 godina.'); return; }
 
     const btn = document.getElementById('submit-btn');
     btn.disabled = true;
@@ -844,41 +740,26 @@
     const ref = 'FRT-' + Math.floor(100000 + Math.random() * 900000);
     const timestamp = new Date().toLocaleString('sr-RS');
 
-    const payload = {
-      timestamp,
-      ref,
-      name,
-      phone,
-      date,
-      guests,
-      table: selectedTable,
-      note
-    };
+    const payload = { timestamp, ref, name, phone, age, date: dateOrEvent, guests, table: selectedTable, note };
 
     try {
-      // Šalje u Google Sheets
       if (APPS_SCRIPT_URL !== 'TVOJ_APPS_SCRIPT_URL_OVDJE') {
         await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
+          method: 'POST', mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
       }
-
-      // Prikaži potvrdu
-      document.getElementById('c-name').textContent = name;
-      document.getElementById('c-date').textContent = date;
+      document.getElementById('c-name').textContent   = name;
+      document.getElementById('c-date').textContent   = dateOrEvent;
       document.getElementById('c-guests').textContent = guests;
-      document.getElementById('c-table').textContent = selectedTable;
-      document.getElementById('c-ref').textContent = 'REF: #' + ref;
-
-      document.getElementById('form-wrap').style.display = 'none';
+      document.getElementById('c-table').textContent  = selectedTable;
+      document.getElementById('c-ref').textContent    = 'REF: #' + ref;
+      document.getElementById('form-wrap').style.display    = 'none';
       document.getElementById('confirm-wrap').style.display = 'block';
       showToast('✓ Rezervacija je poslata!');
-
     } catch (err) {
-      showToast('⚠ Greška. Pozovi nas na +381 65 26 66 709');
+      showToast('⚠ Greška. Pozovite nas na +381 65 26 66 709');
       btn.disabled = false;
       btn.textContent = 'POTVRDI REZERVACIJU';
     }
